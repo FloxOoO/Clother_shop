@@ -1,20 +1,37 @@
 <template>
   <div
-    v-for="(title, id) in structure.titles"
+    v-for="(inf, id) in menuInformation"
     :key="id"
-    @click="selectProduct(title)"
-    :class="`${
-      selectedProduct === title ? 'product product__selected' : 'product'
-    }`"
+    @click="selectProduct(inf.title)"
+    :class="`${selectedProduct === inf.title ? 'product menu' : 'product'}`"
   >
-    <div class="product__title">
-      <a> {{ title.toUpperCase() }} </a>
+    <div
+      :class="`${
+        selectedProduct === inf.title
+          ? 'product product__title product__selected'
+          : 'product__title'
+      }`"
+    >
+      <a> {{ inf.title }} </a>
+      <icon-mdi
+        :icon="
+          selectedProduct === inf.title
+            ? iconsMenu.mdiArrowUpCircleOutline
+            : iconsMenu.mdiArrowDownCircleOutline
+        "
+        class="product__icon"
+        @click.stop="selectedProduct = null"
+      />
     </div>
-    <icon-mdi :icon="structure.icon" class="product__icon" />
+    <ul v-if="selectedProduct === inf.title" class="product-list">
+      <li v-for="(subtitle, id) in inf.subtitle" :key="id" class="product">
+        {{ subtitle }}
+      </li>
+    </ul>
   </div>
 </template>
 <script>
-import { mdiArrowDownCircleOutline } from "@mdi/js";
+import { mdiArrowDownCircleOutline, mdiArrowUpCircleOutline } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
 export default {
   name: "MainMenu",
@@ -36,10 +53,64 @@ export default {
   },
 
   computed: {
-    structure() {
+    menuInformation() {
+      return [
+        {
+          title: "Обувь",
+          subtitle: [
+            "Ботинки",
+            "Кроссовки",
+            "Туфли",
+            "Сапоги",
+            "Сандали",
+            "Домашняя обувь",
+          ],
+        },
+        {
+          title: "Одежда",
+          subtitle: [
+            "Брюки",
+            "Верхняя одежда",
+            "Свитеры",
+            "Джинсы",
+            "Домашняя одежда",
+            "Купальники",
+            "Нижнее белье",
+            "Носки",
+            "Шорты",
+            "Юбки",
+          ],
+        },
+        {
+          title: "Аксессуары",
+          subtitle: [
+            "Головные уборы",
+            "Зонты",
+            "Канцелярские товары",
+            "Очки",
+            "Рюкзаки",
+            "Сумки",
+          ],
+        },
+        {
+          title: "Спорт",
+          subtitle: ["Велоспорт", "Плавание", "Скейтборд", "Футбол", "Фитнес"],
+        },
+        {
+          title: "Красота",
+          subtitle: [
+            "Макияж",
+            "Для ванны и душа",
+            "Волосы",
+            "Маникюр и педикюр",
+          ],
+        },
+      ];
+    },
+    iconsMenu() {
       return {
-        titles: ["Обувь", "Одежда", "Аксессуары", "Спорт", "Красота"],
-        icon: mdiArrowDownCircleOutline,
+        mdiArrowDownCircleOutline,
+        mdiArrowUpCircleOutline,
       };
     },
   },
@@ -68,6 +139,9 @@ export default {
     }
   }
   &__title {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
     font-size: 24px;
     font-weight: 700;
     a:hover {
@@ -91,6 +165,32 @@ export default {
           color: white;
         }
       }
+    }
+  }
+}
+.product-list {
+  .product {
+    margin: 0px;
+  }
+}
+.menu {
+  padding: 0px;
+  background-color: white;
+  color: black;
+  display: block;
+  .product {
+    margin: 0px;
+  }
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+  .product__icon {
+    display: inline;
+    color: grey;
+    &:hover {
+      color: black;
+      transition: 0.3s;
     }
   }
 }
