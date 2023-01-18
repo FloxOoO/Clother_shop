@@ -50,7 +50,6 @@ export default {
   display: flex;
   &__left-column {
   }
-
   &__right-column {
   }
 }
