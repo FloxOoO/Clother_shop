@@ -27,12 +27,12 @@
     </div>
     <ul v-if="checkSelectCategory(title)" class="category-open__list">
       <li v-for="(subtitle, id) in subtitles" :key="id" class="category">
-        {{ subtitle }}
+        <a>{{ subtitle }}</a>
       </li>
     </ul>
   </div>
 </template>
-<script>  
+<script>
 import { mdiArrowDownCircleOutline, mdiArrowUpCircleOutline } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
 export default {
@@ -62,10 +62,10 @@ export default {
       return this.selectedCategory === categoryName;
     },
     selectCategory(categoryName) {
-      this.selectedCategory = categoryName
+      this.selectedCategory = categoryName;
     },
     removeSelectCategory() {
-      this.selectedCategory = null
+      this.selectedCategory = null;
     },
   },
 
@@ -126,7 +126,7 @@ export default {
     .category__title a:hover {
       color: white;
     }
-    
+
     &__selected {
       display: flex;
       justify-content: space-between;
@@ -146,6 +146,10 @@ export default {
     &__list {
       .category {
         margin: 0px;
+        a:hover {
+          transition: 0.3s;
+          color: rgba(128, 128, 128);
+        }
       }
     }
   }

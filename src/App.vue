@@ -8,7 +8,9 @@
           <div class="catalog__left-column">
             <main-menu />
           </div>
-          <div class="catalog__right-column"></div>
+          <div class="catalog__right-column">
+            
+          </div>
         </div>
       </div>
     </div>
