@@ -1,31 +1,21 @@
 <template>
   <div
-    @click="selectCategory(title)"
-    :class="`${checkSelectCategory(title) ? 'category-open' : 'category'}`"
+    @click="select = true"
+    :class="`${select ? 'category-open' : 'category'}`"
   >
-    <div
-      :class="`${
-        checkSelectCategory(title)
-          ? 'category-open__selected'
-          : 'category__title'
-      }`"
-    >
+    <div :class="`${select ? 'category-open__selected' : 'category__title'}`">
       <a> {{ title }} </a>
       <icon-mdi
         :icon="
-          checkSelectCategory(title)
+          select
             ? iconsMenu.mdiArrowUpCircleOutline
             : iconsMenu.mdiArrowDownCircleOutline
         "
-        @click.stop="
-          checkSelectCategory(title)
-            ? removeSelectCategory(title)
-            : selectCategory(title)
-        "
+        @click.stop="select ? (select = false) : (select = true)"
         class="category__icon"
       />
     </div>
-    <ul v-if="checkSelectCategory(title)" class="category-open__list">
+    <ul v-if="select" class="category-open__list">
       <li v-for="(subtitle, id) in subtitles" :key="id" class="category">
         <a>{{ subtitle }}</a>
       </li>
@@ -53,20 +43,8 @@ export default {
 
   data() {
     return {
-      selectedCategory: null,
+      select: false,
     };
-  },
-
-  methods: {
-    checkSelectCategory(categoryName) {
-      return this.selectedCategory === categoryName;
-    },
-    selectCategory(categoryName) {
-      this.selectedCategory = categoryName;
-    },
-    removeSelectCategory() {
-      this.selectedCategory = null;
-    },
   },
 
   computed: {

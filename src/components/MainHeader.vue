@@ -1,7 +1,13 @@
 <template>
   <div class="header">
+    <main-header-popup-city ref="popupCity" @select-city="switchCity" />
     <div class="header__rows">
-      <div class="city text">г. Уфа</div>
+      <div class="city" @click="openPopupCity">
+        <div class="text">
+          {{ city }}
+          <icon-mdi :icon="icons.mdiMenuDown" />
+        </div>
+      </div>
       <div class="information">
         <div
           v-for="inf in information"
@@ -30,26 +36,42 @@
   </div>
 </template>
 <script>
-import { mdiTruckDelivery, mdiWallet, mdiClock } from "@mdi/js";
+import {
+  mdiTruckDelivery,
+  mdiWallet,
+  mdiClock,
+  mdiMenuDown
+} from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
 import MainHeaderPopup from "./MainHeaderPopup.vue";
+import MainHeaderPopupCity from "./MainHeaderPopupCity.vue";
 export default {
   name: "Header",
 
   components: {
     IconMdi,
     MainHeaderPopup,
+    MainHeaderPopupCity,
   },
 
   data() {
     return {
       selectedInformation: null,
+      city: "Выберите город",
     };
   },
 
   methods: {
     hoverPopup(information) {
       this.selectedInformation = information;
+    },
+    async openPopupCity() {
+      await this.$refs.popupCity.open();
+    },
+    switchCity(city) {
+      if (city && typeof city === "string") {
+        this.city = city;
+      }
     },
   },
 
@@ -75,12 +97,36 @@ export default {
         },
       ];
     },
+    icons() {
+      return {
+        mdiMenuDown,
+      };
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-.text {
-  color: white;
+@mixin box ($mr, $ml, $bgc) {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  justify-content: space-between;
+  .text {
+    color: white;
+    display: flex;
+    align-items: center;
+    height: inherit;
+    padding: 0px 20px 0px 20px;
+    transition: 0.3s;
+    svg {
+      margin-right: $mr;
+      margin-left: $ml;
+    }
+    &:hover {
+      background-color: $bgc;
+      transition: 0.3s;
+    }
+  }
 }
 .header {
   background-color: black;
@@ -89,30 +135,20 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1400px;
+    max-width: 1400px;
     margin: 0px auto;
   }
 }
-.information {
-  display: flex;
-  align-items: center;
-  height: inherit;
-  justify-content: space-between;
-  width: 60%;
-  .text {
-    display: flex;
-    align-items: center;
-    height: inherit;
-    padding: 0px 20px 0px 20px;
-    transition: 0.3s;
-    svg {
-      margin-right: 10px;
-    }
-    &:hover {
-      background-color: blue;
-      transition: 0.3s;
-    }
+.city {
+  @include box(0px, 3px, grey);
+  svg {
+    margin-top: 2.5px;
   }
+  cursor: pointer;
+}
+.information {
+  max-width: 60%;
+  @include box(8px, 0px, blue);
 }
 .popup-position {
   top: 40px;
