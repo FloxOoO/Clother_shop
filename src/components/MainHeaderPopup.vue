@@ -16,6 +16,7 @@ export default {
 <style lang="scss" scoped>
 .popup {
   position: absolute;
+  z-index: 10;
   padding: 20px;
   background-color: white;
   color: black;

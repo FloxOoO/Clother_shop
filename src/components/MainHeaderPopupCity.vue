@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen" class="backdrop" @click="close(null)">
     <div class="popup" @click.stop>
-      <img src="src/img/logo_popup.png" alt="" class="popup__logo" />
+      <img src="../img/logo_popup.png" alt="" class="popup__logo" />
       <div class="popup__description">
         <div class="popup__header">
           <div class="popup__title">Укажите ваш город</div>
@@ -118,9 +118,9 @@ export default {
   padding: 20px;
   margin-top: 80px;
   &__logo {
-    width: 343px;
-    height: 345px;
-    margin-right: 15px;
+    width: 299px;
+    height: 324px;
+    margin-right: 35px;
   }
   &__header {
     display: flex;
