@@ -24,5 +24,10 @@ export default {
   border: 1px solid grey;
   box-shadow: 0px 0px 5px 1px grey;
   line-height: 20px;
+  margin-left: -20px;
+  @media (max-width: 976px) {
+    height: 250px;
+    width: 200px;
+  }
 }
 </style>

@@ -8,40 +8,26 @@
           <icon-mdi :icon="icons.mdiMenuDown" />
         </div>
       </div>
-      <div class="information">
+      <div class="boxes">
         <div
-          v-for="inf in information"
-          :key="inf.text"
-          @mouseover="hoverPopup(inf)"
-          @mouseleave="selectedInformation = null"
-          class="text"
+          v-for="(box, boxID) in boxes"
+          :key="box.text"
+          :class="`text text-open-popup-${boxID + 1}`"
         >
-          <icon-mdi :icon="inf.icon" />
-          {{ inf.text }}
+          <icon-mdi :icon="box.icon" />
+          {{ box.text }}
+          <main-header-popup
+            :class="`popup-position popup-position-${boxID + 1}`"
+          >
+            {{ box.popupText }}
+          </main-header-popup>
         </div>
-        <main-header-popup
-          v-if="selectedInformation"
-          :class="`${
-            selectedInformation?.text === information[0].text
-              ? 'popup-position__1'
-              : selectedInformation?.text === information[1].text
-              ? 'popup-position__2'
-              : 'popup-position__3'
-          }`"
-        >
-          {{ selectedInformation?.popupText }}
-        </main-header-popup>
       </div>
     </div>
   </div>
 </template>
 <script>
-import {
-  mdiTruckDelivery,
-  mdiWallet,
-  mdiClock,
-  mdiMenuDown
-} from "@mdi/js";
+import { mdiTruckDelivery, mdiWallet, mdiClock, mdiMenuDown } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
 import MainHeaderPopup from "./MainHeaderPopup.vue";
 import MainHeaderPopupCity from "./MainHeaderPopupCity.vue";
@@ -56,14 +42,14 @@ export default {
 
   data() {
     return {
-      selectedInformation: null,
+      selectedboxes: null,
       city: "Выберите город",
     };
   },
 
   methods: {
-    hoverPopup(information) {
-      this.selectedInformation = information;
+    hoverPopup(boxes) {
+      this.selectedboxes = boxes;
     },
     async openPopupCity() {
       await this.$refs.popupCity.open();
@@ -76,7 +62,7 @@ export default {
   },
 
   computed: {
-    information() {
+    boxes() {
       return [
         {
           icon: mdiTruckDelivery,
@@ -106,12 +92,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@mixin box ($mr, $ml, $bgc) {
+@mixin box($m, $bgc) {
   display: flex;
   align-items: center;
   height: inherit;
   justify-content: space-between;
   .text {
+    position: relative;
     color: white;
     display: flex;
     align-items: center;
@@ -119,12 +106,22 @@ export default {
     padding: 0px 20px 0px 20px;
     transition: 0.3s;
     svg {
-      margin-right: $mr;
-      margin-left: $ml;
+      margin: $m;
     }
     &:hover {
       background-color: $bgc;
       transition: 0.3s;
+    }
+    @media (max-width: 976px) {
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid white;
+      border-radius: 15px;
+      margin-right: 3px;
+      margin-left: 3;
+      svg {
+        display: none;
+      }
     }
   }
 }
@@ -137,32 +134,49 @@ export default {
     align-items: center;
     max-width: 1400px;
     margin: 0px auto;
+    @media (max-width: 976px) {
+      height: 80px;
+    }
   }
 }
 .city {
-  @include box(0px, 3px, grey);
-  svg {
-    margin-top: 2.5px;
-  }
+  @include box(2.5px 0px 0px 3px, grey);
   cursor: pointer;
 }
-.information {
-  max-width: 60%;
-  @include box(8px, 0px, blue);
+.boxes {
+  @include box(0px 8px 0px 0px, blue);
+  .text {
+    &-open-popup-1 {
+      &:hover {
+        .popup-position-1 {
+          display: inline;
+        }
+      }
+    }
+    &-open-popup-2 {
+      &:hover {
+        .popup-position-2 {
+          display: inline;
+        }
+      }
+    }
+    &-open-popup-3 {
+      &:hover {
+        .popup-position-3 {
+          display: inline;
+          @media (max-width: 976px) {
+            margin-left: -100px;
+          }
+        }
+      }
+    }
+  }
 }
 .popup-position {
   top: 40px;
-  &__1 {
-    top: 40px;
-    left: 819px;
-  }
-  &__2 {
-    top: 40px;
-    left: 1061px;
-  }
-  &__3 {
-    top: 40px;
-    left: 1324px;
+  display: none;
+  @media (max-width: 976px) {
+    top: 80px;
   }
 }
 </style>

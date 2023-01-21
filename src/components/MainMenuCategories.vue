@@ -65,6 +65,7 @@ export default {
   border-radius: 7px;
   &:hover {
     background-color: rgba(128, 128, 128, 0.2);
+    cursor: pointer;
     .category__icon {
       display: inline;
       color: grey;
@@ -118,6 +119,7 @@ export default {
         color: grey;
         &:hover {
           color: white;
+          cursor: pointer;
         }
       }
     }
