@@ -9,22 +9,7 @@
             <main-menu />
           </div>
           <div class="catalog__right-column">
-            <div class="catalog-products">
-              <!-- <div class="product-card">
-                <img src="./img/RTLACH110901_18849912_2_v1.webp" alt="" class="product-card__img">
-                <div class="product-card__description">
-                  <div class="product-card__price">
-                    <span class="product-card__old-price">5 700</span>
-                    <span class="product-card__new-price">2 499</span>
-                  </div>
-                  <div class="product-card__information">
-                    <div class="product-card__brand">Mango</div>
-                    <div class="product-card__type">Джинсы</div>
-                  </div>
-                  <div class="product-card__size">Размер (RUS): 46/48 48/50 50/52 52/54 54/56</div>
-                </div>
-              </div> -->
-            </div>
+            <catalog-products />
           </div>
         </div>
       </div>
@@ -37,12 +22,14 @@ import MainHeader from "./components/MainHeader.vue";
 import SubHeader from "./components/SubHeader.vue";
 import MainFooter from "./components/MainFooter.vue";
 import MainMenu from "./components/MainMenu.vue";
+import CatalogProducts from "./components/CatalogProducts.vue";
 export default {
   name: "Shop",
 
   components: {
     MainHeader,
     SubHeader,
+    CatalogProducts,
     MainFooter,
     MainMenu,
   },
@@ -57,7 +44,7 @@ export default {
   }
 }
 .content {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0px auto;
 }
 .catalog {
@@ -69,64 +56,4 @@ export default {
     flex: 1 1 auto;
   }
 }
-.catalog-products {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0px -25px;
-}
-// .product-card {
-//   display: flex;
-//   flex-direction: column;
-//   width: 286px;
-//   height: 406px;
-//   padding: 0px 25px;
-//   margin-bottom: 30px;
-//   &:hover {
-//     position: relative;
-//     top: -25px;
-//     padding: 25px;
-//     box-shadow: 0px 0px 5px 1px grey;
-//     .product-card__size {
-//       display: block;
-//     }
-//   }
-//   &__image {
-//     width: inherit - 50px;
-//     height: 340px;
-//   }
-
-//   &__description {
-//     display: flex;
-//     flex-direction: column;
-//     padding-top: 8px;
-//   }
-
-//   &__old-price {
-//     text-decoration: line-through;
-//     font-size: 14px;
-//   }
-
-//   &__new-price {
-//     font-size: 18px;
-//     font-weight: 700;
-//     color: rgb(255, 103, 1);
-//     &:before {
-//       content: " ";
-//     }
-//     &:after {
-//       content: " ₽";
-//     }
-//   }
-
-//   &__information {
-//     margin-top: 8px;
-//   }
-
-//   &__size {
-//     margin-top: 8px;
-//     color: grey;
-//     display: none;
-//   }
-// }
 </style>

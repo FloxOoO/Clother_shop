@@ -28,8 +28,8 @@ export default {
 <style lang="scss" scoped>
 .subheader {
   position: relative;
-  height: 100px;
-  max-width: 1400px;
+  height: 140px;
+  max-width: 1200px;
   margin: 0px auto;
   text-align: center;
   &__logo {

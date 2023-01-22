@@ -132,7 +132,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0px auto;
     @media (max-width: 976px) {
       height: 80px;
