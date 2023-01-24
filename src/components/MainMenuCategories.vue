@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="select = true"
+    @click="selected(title, '')"
     :class="`${select ? 'category-open' : 'category'}`"
   >
     <div :class="`${select ? 'category-open__selected' : 'category__title'}`">
@@ -11,13 +11,17 @@
             ? iconsMenu.mdiArrowUpCircleOutline
             : iconsMenu.mdiArrowDownCircleOutline
         "
-        @click.stop="select ? (select = false) : (select = true)"
+        @click.stop="select ? (select = false) : selected(title, '')"
         class="category__icon"
       />
     </div>
     <ul v-if="select" class="category-open__list">
-      <li v-for="(subtitle, id) in subtitles" :key="id" class="category">
-        <a>{{ subtitle }}</a>
+      <li v-for="(subtitle, id) in subtitles" :key="id" class="category type">
+        <a
+          @click.stop="selected(title, subtitle)"
+        >
+          {{ subtitle }}
+        </a>
       </li>
     </ul>
   </div>
@@ -25,6 +29,7 @@
 <script>
 import { mdiArrowDownCircleOutline, mdiArrowUpCircleOutline } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
+import { useProductsStore } from "../stores/products.js";
 export default {
   name: "MainMenuTitles",
 
@@ -41,10 +46,23 @@ export default {
     },
   },
 
+  setup() {
+    const productsStore = useProductsStore();
+    return { productsStore };
+  },
+
   data() {
     return {
       select: false,
     };
+  },
+
+  methods: {
+    selected(category, type) {
+      this.select = true;
+      this.productsStore.getProducts(category, type);
+      this.$emit('selected-category', true)
+    }
   },
 
   computed: {
@@ -115,6 +133,10 @@ export default {
       border-radius: 7px;
       background-color: black;
       color: white;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+      }
       .category__icon {
         color: grey;
         &:hover {
@@ -132,6 +154,14 @@ export default {
         }
       }
     }
+  }
+}
+.type {
+  &:hover {
+    cursor: zoom-in;
+  }
+  a:hover {
+    cursor: pointer;
   }
 }
 </style>

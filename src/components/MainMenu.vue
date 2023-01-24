@@ -1,18 +1,52 @@
 <template>
+  <div 
+    class="allcategory" 
+    :class="{
+      'allcategory-noselect': selectedCategory
+    }"
+    @click="openStore"
+  >
+    Все товары
+  </div>
   <main-menu-categories
     v-for="(category, id) in categories"
     :key="id"
     :title="category.title"
     :subtitles="category.subtitles"
+    @selected-category="selected"
   />
 </template>
 <script>
 import MainMenuCategories from "./MainMenuCategories.vue";
+import { useProductsStore } from "../stores/products.js";
 export default {
   name: "MainMenu",
 
   components: {
     MainMenuCategories,
+  },
+
+  setup() {
+    const productsStore = useProductsStore();
+    return { productsStore };
+  },
+
+  data() {
+    return {
+      selectedCategory: false,
+    };
+  },
+
+  methods: {
+    selected(category) {
+      if (category) {
+        this.selectedCategory = category;
+      }
+    },
+    openStore() {
+      this.selectedCategory = false;
+      this.productsStore.initStore();
+    }
   },
 
   computed: {
@@ -25,7 +59,7 @@ export default {
             "Кроссовки",
             "Туфли",
             "Сапоги",
-            "Сандали",
+            "Сандалии",
             "Домашняя обувь",
           ],
         },
@@ -73,3 +107,23 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.allcategory {
+  width: 200px;
+  margin-bottom: 25px;
+  padding: 10px;
+  border-radius: 7px;
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  &-noselect {
+    background-color: white;
+    color: black;
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.2);
+      cursor: pointer;
+    }
+  }
+}
+</style>

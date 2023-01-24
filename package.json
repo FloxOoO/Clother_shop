@@ -12,6 +12,7 @@
     "@mdi/font": "^7.1.96",
     "@mdi/js": "^7.1.96",
     "@mdi/svg": "^7.1.96",
+    "pinia": "^2.0.29",
     "vue": "^3.2.45"
   },
   "devDependencies": {
