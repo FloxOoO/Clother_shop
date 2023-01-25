@@ -6,10 +6,14 @@
       <icon-mdi :icon="icons.mdiBasketOutline" class="basket__icon" />
       <div class="basket__title">Корзина</div>
     </div>
+    <div class="favorite">
+      <icon-mdi :icon="icons.mdiCardsHeart" class="favorite__icon" />
+      <div class="favorite__title">Избранное</div>
+    </div>
   </div>
 </template>
 <script>
-import { mdiBasketOutline } from "@mdi/js";
+import { mdiBasketOutline, mdiCardsHeart } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
 export default {
   components: {
@@ -20,12 +24,32 @@ export default {
     icons() {
       return {
         mdiBasketOutline,
+        mdiCardsHeart,
       };
     },
   },
 };
 </script>
 <style lang="scss" scoped>
+@mixin subheader-menu($top, $cl) {
+  top: $top;
+  left: 100%;
+  transform: translate(-100%, -50%);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  &__icon {
+    margin-right: 4px;
+    color: grey;
+    transition: 0.3s;
+    &:hover {
+      color: $cl;
+      transition: 0.3s;
+    }
+  }
+}
 .subheader {
   position: relative;
   height: 140px;
@@ -48,22 +72,9 @@ export default {
   }
 }
 .basket {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 100%;
-  transform: translate(-100%, -50%);
-  cursor: pointer;
-  &__icon {
-    margin-right: 4px;
-    color: grey;
-    transition: .3s;
-    &:hover {
-      color: black;
-      transition: .3s;
-    }
-  }
+  @include subheader-menu(40%,black);
+}
+.favorite {
+  @include subheader-menu(60%,red);
 }
 </style>

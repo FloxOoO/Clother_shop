@@ -2,56 +2,50 @@
   <div class="product-card-container">
     <div class="product-card">
       <div class="product-card__image">
-        <img :src="`${image_path}`" alt="" class="product-card__img" />
+        <img :src="`${product.image_path}`" alt="" class="product-card__img" />
       </div>
       <div class="product-card__description">
         <div class="product-card__price">
-          <span v-if="newprice" class="product-card__old-price">
-            {{ price }}</span
+          <span v-if="product?.newprice" class="product-card__old-price">
+            {{ product.price }}</span
           >
           <span
             class="product-card__actually-price"
             :class="{
-              'product-card__price-discount': newprice,
+              'product-card__price-discount': product?.newprice,
             }"
           >
-            {{ newprice ? newprice : price }}</span
+            {{ product?.newprice ? product.newprice : product.price }}</span
           >
         </div>
         <div class="product-card__information">
-          <div class="product-card__brand">{{ brand }}</div>
-          <div class="product-card__fullname">{{ fullname }}</div>
+          <div class="product-card__brand">{{ product.brand }}</div>
+          <div class="product-card__fullname">{{ product.fullname }}</div>
         </div>
       </div>
     </div>
     <div class="product-card-hover">
-      <div v-if="size" class="product-card__size">
-        Размер (RUS): {{ size.join(" ") }}
+      <add-favorite 
+        :productID="product.id"
+      />
+      <div v-if="product?.size" class="product-card__size">
+        Размер (RUS): {{ product.size.join(" ") }}
       </div>
     </div>
   </div>
 </template>
 <script>
+import addFavorite from "./addFavorite.vue"
 export default {
+  components: {
+    addFavorite
+  },
+
   props: {
-    image_path: {
-      type: String,
-    },
-    price: {
-      type: Number,
-    },
-    newprice: {
-      type: Number,
-    },
-    brand: {
-      type: String,
-    },
-    fullname: {
-      type: String,
-    },
-    size: {
-      type: Array,
-    },
+    product: {
+      type: Object,
+      required: true,
+    }
   },
 };
 </script>
@@ -67,7 +61,8 @@ export default {
     &:hover {
       .product-card-hover {
         visibility: visible;
-        transition: 0.3s ease 0.3s;
+        transition: .2s .2s;
+        box-shadow: 0px 7px 8px grey;
       }
     }
   }
@@ -79,7 +74,6 @@ export default {
     bottom: 0;
     left: -8px;
     background-color: white;
-    box-shadow: 0px 7px 8px grey;
   }
   &__image {
     width: 100%;

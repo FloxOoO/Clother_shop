@@ -1,8 +1,8 @@
 <template>
-  <div 
-    class="allcategory" 
+  <div
+    class="allcategory"
     :class="{
-      'allcategory-noselect': selectedCategory
+      'allcategory-noselect': selectedCategory,
     }"
     @click="openStore"
   >
@@ -18,12 +18,16 @@
 </template>
 <script>
 import MainMenuCategories from "./MainMenuCategories.vue";
-import { useProductsStore } from "../stores/products.js";
+import { useProductsStore } from "../stores/productsStore.js";
 export default {
   name: "MainMenu",
 
   components: {
     MainMenuCategories,
+  },
+
+  emits: {
+    'selected-category': (value) => typeof value === 'object'
   },
 
   setup() {
@@ -38,15 +42,22 @@ export default {
   },
 
   methods: {
-    selected(category) {
-      if (category) {
-        this.selectedCategory = category;
+    selected(selectedCategory) {
+      if (selectedCategory) {
+        this.selectedCategory = true
       }
+      this.$emit("selected-category", {
+        category: selectedCategory.category,
+        type: selectedCategory.type,
+      });
     },
     openStore() {
       this.selectedCategory = false;
-      this.productsStore.initStore();
-    }
+      this.$emit("selected-category", {
+        category: "",
+        type: "",
+      });
+    },
   },
 
   computed: {

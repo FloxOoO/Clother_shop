@@ -1,15 +1,16 @@
 <template>
   <div class="page">
+    <page-preloader />
     <div class="page__container">
       <main-header />
       <sub-header />
       <div class="content">
         <div class="catalog">
           <div class="catalog__left-column">
-            <main-menu />
+            <main-menu @selected-category="selected" />
           </div>
           <div class="catalog__right-column">
-            <catalog-products />
+            <catalog-products :selected-category="selectedCategory" />
           </div>
         </div>
       </div>
@@ -18,6 +19,7 @@
   </div>
 </template>
 <script>
+import PagePreloader from "./components/PagePreloader.vue"
 import MainHeader from "./components/MainHeader.vue";
 import SubHeader from "./components/SubHeader.vue";
 import MainFooter from "./components/MainFooter.vue";
@@ -27,16 +29,36 @@ export default {
   name: "Shop",
 
   components: {
+    PagePreloader,
     MainHeader,
     SubHeader,
     CatalogProducts,
     MainFooter,
     MainMenu,
   },
+
+  data() {
+    return {
+      selectedCategory: {},
+    };
+  },
+
+  created() {
+    this.selectedCategory = { category: '', type: '' }
+  },
+
+  methods: {
+    selected(selectedCategory) {
+      if (selectedCategory) {
+        this.selectedCategory = selectedCategory;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 .page {
+  position: relative;
   display: flex;
   flex-direction: column;
   &__container {

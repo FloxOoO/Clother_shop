@@ -1,19 +1,14 @@
 <template>
   <div class="catalog-products">
     <product-card 
-      v-for="(product, id) in this.productsStore.products"
-      :key="id"
-      :image_path="product.image_path"
-      :brand="product.brand"
-      :fullname="product.fullname"
-      :price="product.price"
-      :newprice="product?.newprice"
-      :size="product?.size"
+      v-for="product in getProducts(selectedCategory.category, selectedCategory.type)"
+      :key="product.id"
+      :product="product"
     />
   </div>
 </template>
 <script>
-import { useProductsStore } from "../stores/products.js";
+import { useProductsStore } from "../stores/productsStore.js";
 import ProductCard from "./ProductCard.vue"
 export default {
   name: "CatalogProducts",
@@ -22,14 +17,22 @@ export default {
     ProductCard
   },
 
+  props: {
+    selectedCategory: {
+      type: Object,
+      required: true,
+    }
+  },
+
   created() {
     this.productsStore.initStore();
   },
 
   setup() {
     const productsStore = useProductsStore();
-    return { productsStore };
+    return { productsStore, getProducts: productsStore.getProducts };
   }
+
 };
 </script>
 <style lang="scss" scoped>

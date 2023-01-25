@@ -29,7 +29,6 @@
 <script>
 import { mdiArrowDownCircleOutline, mdiArrowUpCircleOutline } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
-import { useProductsStore } from "../stores/products.js";
 export default {
   name: "MainMenuTitles",
 
@@ -40,15 +39,16 @@ export default {
   props: {
     title: {
       type: String,
+      required: true,
     },
     subtitles: {
       type: Array,
+      required: false,
     },
   },
 
-  setup() {
-    const productsStore = useProductsStore();
-    return { productsStore };
+  emits: {
+    'selected-category': (value) => typeof value === 'object'
   },
 
   data() {
@@ -60,8 +60,7 @@ export default {
   methods: {
     selected(category, type) {
       this.select = true;
-      this.productsStore.getProducts(category, type);
-      this.$emit('selected-category', true)
+      this.$emit('selected-category', { category: category, type: type });
     }
   },
 
