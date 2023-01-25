@@ -6,7 +6,10 @@
       <icon-mdi :icon="icons.mdiBasketOutline" class="basket__icon" />
       <div class="basket__title">Корзина</div>
     </div>
-    <div class="favorite">
+    <div 
+      @click="$router.push('/favorites')"
+      class="favorite"
+    >
       <icon-mdi :icon="icons.mdiCardsHeart" class="favorite__icon" />
       <div class="favorite__title">Избранное</div>
     </div>
