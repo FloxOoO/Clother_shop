@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card-container">
+  <div 
+    class="product-card-container"
+    @click="$router.push(`/product/${product.id}`)"
+  >
     <div class="product-card">
       <div class="product-card__image">
         <img :src="`${product.image_path}`" alt="" class="product-card__img" />
