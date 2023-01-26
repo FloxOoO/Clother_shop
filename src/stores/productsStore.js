@@ -1293,6 +1293,7 @@ export const useProductsStore = defineStore("productsStore", {
       }
     ],
     favorites: [],
+    basket: []
   }),
 
   getters: {

@@ -4,7 +4,10 @@
       <slot> {{ namePage }} </slot>
     </div>
     <img src="../img/logo_header.png" alt="" class="subheader__logo" />
-    <div class="basket">
+    <div 
+      @click="$router.push('/basket')"
+      class="basket"
+    >
       <icon-mdi :icon="icons.mdiBasketOutline" class="basket__icon" />
       <div class="basket__title">Корзина</div>
     </div>
@@ -32,7 +35,7 @@ export default {
         mdiCardsHeart,
       };
     },
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

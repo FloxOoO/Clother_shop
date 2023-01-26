@@ -3,13 +3,12 @@
   <catalog-user />
 </template>
 <script>
-import CatalogUser from "../components/CatalogUser.vue";
 import btnBack from "../components/btnBack.vue";
+import CatalogUser from "../components/CatalogUser.vue";
 export default {
   components: {
-    CatalogUser,
     btnBack,
+    CatalogUser
   },
 };
 </script>
-
