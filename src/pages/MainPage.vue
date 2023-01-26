@@ -4,7 +4,11 @@
       <main-menu @selected-category="selected" />
     </div>
     <div class="catalog__right-column">
-      <catalog-products :selected-category="selectedCategory" />
+      <catalog-products 
+        :selected-category="selectedCategory"
+      >
+        Товары временно отсутствуют
+      </catalog-products>
     </div>
   </div>
 </template>

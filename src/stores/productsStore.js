@@ -53,15 +53,6 @@ export const useProductsStore = defineStore("productsStore", {
         size: [40, 41, 41.5, 42, 43, 43.5],
       },
       {
-        id: 6,
-        category: "Аксессуары",
-        type: "Очки",
-        image_path: "src/img/product_photo.jpeg",
-        brand: "Burberry",
-        fullname: "Очки солнцезащитные",
-        price: 21800,
-      },
-      {
         id: 7,
         category: "Обувь",
         type: "Ботинки",

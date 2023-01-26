@@ -1,46 +1,86 @@
 <template>
-  <div class="catalog-products">
-    <product-card 
-      v-for="product in getProducts(selectedCategory.category, selectedCategory.type)"
-      :key="product.id"
-      :product="product"
-    />
+  <div 
+    class="catalog-container"
+    :class="{
+      'main': $route.name === 'Главная'
+    }"
+  >
+    <div v-if="!pageOptions.length" class="catalog-container__empty">
+      <slot>
+        {{ EmptyText }}
+      </slot>
+    </div>
+    <div class="catalog-container__products">
+      <product-card
+        v-for="product in pageOptions"
+        :key="product.id"
+        :product="product"
+      />
+    </div>
   </div>
 </template>
 <script>
 import { useProductsStore } from "../stores/productsStore.js";
-import ProductCard from "./ProductCard.vue"
+import ProductCard from "./ProductCard.vue";
 export default {
-  name: "CatalogProducts",
-
   components: {
-    ProductCard
+    ProductCard,
   },
-
+  
   props: {
     selectedCategory: {
       type: Object,
-      required: true,
+      required: false,
     }
-  },
-
-  created() {
-    this.getProducts('', '')
   },
 
   setup() {
     const productsStore = useProductsStore();
-    return { getProducts: productsStore.getProducts };
-  }
+    return { productsStore, getProducts: productsStore.getProducts };
+  },
 
+  created() {
+    if (this.$route.name === "Главная") {
+      this.getProducts('', '')
+    }
+  },
+
+  computed: {
+    pageOptions() {
+      if (this.$route.name === "Главная") {
+        return this.getProducts(this.selectedCategory.category, this.selectedCategory.type);
+      }
+      if (this.$route.name === "Избранное") {
+        return this.productsStore.favorites;
+      }
+      if (this.$route.name === "Корзина") {
+        return this.productsStore.basket;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-.catalog-products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 230px);
-  grid-auto-rows: 1fr;
-  gap: 24px 12px;
-  margin-bottom: 30px;
+.catalog-container {
+  position: relative;
+  min-height: calc(100vh - 274px);
+  &__empty {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: rgba(128, 128, 128, 0.8);
+  }
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 230px);
+    grid-auto-rows: minmax(1fr);
+    gap: 24px 12px;
+    margin-bottom: 30px;
+  }
+}
+.main {
+  min-height: calc(100vh - 230px);
 }
 </style>
