@@ -1,7 +1,9 @@
 <template>
   <div class="user-catalog">
     <div v-if="!pageOptions.length" class="user-catalog__empty">
-      Вы пока ничего не добавили в избранное
+      <slot>
+        {{ EmptyText }}
+      </slot>
     </div>
     <div class="user-catalog__products">
       <product-card
