@@ -1,6 +1,8 @@
 <template>
   <div class="subheader">
-    <div class="subheader__title">Товары</div>
+    <div class="subheader__title">
+      <slot> {{ namePage }} </slot>
+    </div>
     <img src="../img/logo_header.png" alt="" class="subheader__logo" />
     <div class="basket">
       <icon-mdi :icon="icons.mdiBasketOutline" class="basket__icon" />

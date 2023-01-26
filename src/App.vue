@@ -3,20 +3,24 @@
     <page-preloader />
     <div class="page__container">
       <main-header />
-      <sub-header />
-      <router-view v-slot="{ Component }">
-        <component :is="Component" />
-      </router-view>
+      <sub-header>
+        {{ this.$route.name }}
+      </sub-header>
+      <div class="content">
+        <router-view v-slot="{ Component }">
+          <component :is="Component" />
+        </router-view>
+      </div>
     </div>
     <main-footer />
   </div>
 </template>
 <script>
-import PagePreloader from "./components/PagePreloader.vue"
+import PagePreloader from "./components/PagePreloader.vue";
 import MainHeader from "./components/MainHeader.vue";
 import SubHeader from "./components/SubHeader.vue";
 import MainFooter from "./components/MainFooter.vue";
-import MainPage from "./pages/MainPage.vue"
+import MainPage from "./pages/MainPage.vue";
 export default {
   name: "Shop",
 
@@ -25,8 +29,8 @@ export default {
     MainHeader,
     SubHeader,
     MainFooter,
-    MainPage
-  }
+    MainPage,
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -37,5 +41,9 @@ export default {
   &__container {
     flex: 1 1 auto;
   }
+}
+.content {
+  max-width: 1200px;
+  margin: 0px auto;
 }
 </style>

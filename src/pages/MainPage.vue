@@ -1,12 +1,10 @@
 <template>
-  <div class="content">
-    <div class="catalog">
-      <div class="catalog__left-column">
-        <main-menu @selected-category="selected" />
-      </div>
-      <div class="catalog__right-column">
-        <catalog-products :selected-category="selectedCategory" />
-      </div>
+  <div class="catalog">
+    <div class="catalog__left-column">
+      <main-menu @selected-category="selected" />
+    </div>
+    <div class="catalog__right-column">
+      <catalog-products :selected-category="selectedCategory" />
     </div>
   </div>
 </template>
@@ -28,7 +26,7 @@ export default {
   },
 
   created() {
-    this.selectedCategory = { category: '', type: '' }
+    this.selectedCategory = { category: "", type: "" };
   },
 
   methods: {
@@ -41,10 +39,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.content {
-  max-width: 1200px;
-  margin: 0px auto;
-}
 .catalog {
   display: flex;
   &__left-column {

@@ -25,12 +25,12 @@ export default {
   },
 
   created() {
-    this.productsStore.initStore();
+    this.getProducts('', '')
   },
 
   setup() {
     const productsStore = useProductsStore();
-    return { productsStore, getProducts: productsStore.getProducts };
+    return { getProducts: productsStore.getProducts };
   }
 
 };

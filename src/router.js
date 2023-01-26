@@ -3,8 +3,8 @@ import MainPage from './pages/MainPage.vue';
 import FavoritesPage from './pages/FavoritesPage.vue'
 
 const routes = [
-  { path: '/', component: MainPage },
-  { path: '/favorites', component: FavoritesPage }
+  { path: '/', component: MainPage, name: "Главная" },
+  { path: '/favorites', component: FavoritesPage, name: "Избранное" }
 ];
 
 export default createRouter({
