@@ -7,31 +7,22 @@
         'information__buttons-addbasket-active': addedBasket,
       }"
     >
-      {{ addedBasket ? "Добавлено в корзину" : "Добавить в корзину" }}
+      {{ addedBasket ? "Добавлено" : "Добавить в корзину" }}
     </div>
-    <div @click="addProductFavorite" class="information__buttons-addfavorite">
-      <icon-mdi
-        :icon="addedFavorite ? icons.mdiCardsHeart : icons.mdiCardsHeartOutline"
-        :class="{
-          'information__buttons-addfavorite-active': addedFavorite,
-        }"
-      />
+    <div class="information__buttons-addfavorite">
+      <switch-favorite :productID="product.id" />
     </div>
   </div>
-  <div 
-    v-if="notSelectedSize"
-    class="add-error"
-  >
+  <div v-if="notSelectedSize" class="add-error">
     Необходимо выбрать размер товара
   </div>
 </template>
 <script>
-import { mdiCardsHeart, mdiCardsHeartOutline } from "@mdi/js";
-import IconMdi from "../components/IconMdi.vue";
+import SwitchFavorite from "../components/SwitchFavorite.vue";
 import { useProductsStore } from "../stores/productsStore.js";
 export default {
   components: {
-    IconMdi,
+    SwitchFavorite,
   },
 
   props: {
@@ -48,7 +39,6 @@ export default {
   data() {
     return {
       addedBasket: false,
-      addedFavorite: false,
       notSelectedSize: false,
     };
   },
@@ -58,59 +48,39 @@ export default {
     return { productsStore };
   },
 
-  created() {
-    this.productsStore.favorites.forEach((favorite) => {
-      if (favorite.id === this.product.id) {
-        this.addedFavorite = true;
-      }
-    });
-    this.productsStore.basket.forEach((basket) => {
-      if (basket.id === this.product.id) {
-        this.addedBasket = true;
-      }
-    });
-  },
-
   methods: {
     addProductBasket() {
-      delete this.userProduct.colors;
-      this.userProduct.color = this.selected.color;
+      let userProduct = JSON.parse(JSON.stringify(this.product))
+      delete userProduct.colors;
       if (this.selected.size) {
-        delete this.userProduct.size;
-        this.userProduct.sizeSelected = this.selected.size;
+        delete userProduct.size;
+        userProduct.sizeSelected = this.selected.size;
       }
-      if (!this.userProduct.size) {
+      userProduct.color = this.selected.color;
+      userProduct.amount = 1;
+      if (!userProduct.size) {
         this.addedBasket = true;
-        this.productsStore.addBasket(this.userProduct);
+        this.productsStore.addBasket(userProduct);
       } else {
         this.notSelectedSize = true;
       }
     },
-    addProductFavorite() {
-      this.addedFavorite
-        ? (this.addedFavorite = false)
-        : (this.addedFavorite = true);
-      this.productsStore.addFavorite(this.product.id);
-    },
-  },
-
-  computed: {
-    icons() {
-      return {
-        mdiCardsHeart,
-        mdiCardsHeartOutline,
-      };
-    },
-    userProduct() {
-      return JSON.parse(JSON.stringify(this.product));
-    },
   },
 
   watch: {
-    'selected.size'() {
+    addedBasket() {
+      setTimeout(() => {
+        this.addedBasket = false;
+      }, 500)
+    },
+    "selected.size"() {
       this.notSelectedSize = false;
+      this.addedBasket = false;
+    },
+    "selected.color"() {
+      this.addedBasket = false;
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -135,6 +105,7 @@ export default {
     &-active {
       transition: 0.3s;
       background-color: rgba(39, 39, 39, 0.8);
+      cursor: zoom-in;
     }
   }
 
@@ -146,27 +117,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    svg:hover {
-      cursor: pointer;
-      transition: color 0.3s;
-      color: red;
-    }
-    &-active {
-      visibility: visible;
-      color: red;
-      transition: color 0.3s;
-      animation: heart 0.3s;
-    }
-    @keyframes heart {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(2);
-      }
-      100% {
-        transform: scale(1);
-      }
+    .favorite {
+      position: relative;
+      color: black;
+      margin: 0px;
+      z-index: 0;
     }
   }
 }

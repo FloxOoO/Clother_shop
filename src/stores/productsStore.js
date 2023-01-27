@@ -1,5 +1,13 @@
 import { defineStore } from "pinia";
 
+function checkDuplicate(productIN, productOUT) {
+  return (
+    productIN.id === productOUT.id &&
+    productIN.color === productOUT.color &&
+    productIN?.sizeSelected === productOUT?.sizeSelected
+  );
+}
+
 export const useProductsStore = defineStore("productsStore", {
   state: () => ({
     products: [
@@ -55,7 +63,7 @@ export const useProductsStore = defineStore("productsStore", {
         fullname: "Ботинки EXOSTRIDE",
         price: 17990,
         size: [40, 41, 41.5, 42, 43, 43.5],
-        colors: [, "Розовый", "Зеленый", "Желтый"],
+        colors: ["Розовый", "Зеленый", "Желтый"],
       },
       {
         id: 7,
@@ -1517,7 +1525,7 @@ export const useProductsStore = defineStore("productsStore", {
   },
 
   actions: {
-    addFavorite(id) {
+    switchFavorite(id) {
       this.products.forEach((product) => {
         if (product.id === id) {
           if (!this.favorites.includes(product)) {
@@ -1528,9 +1536,16 @@ export const useProductsStore = defineStore("productsStore", {
         }
       });
     },
-    addBasket(product) {
-      this.basket = this.basket.filter((productB) => productB.id !== product.id)
-      this.basket.push(product)
+    addBasket(productOUT) {
+      if (this.basket.find((productIN) => checkDuplicate(productIN, productOUT))) 
+      {
+        this.basket.find((productIN) => checkDuplicate(productIN, productOUT)).amount += 1;
+      } else {
+        this.basket.push(product);
+      }
+    },
+    removeBasket(productOUT) {
+      this.basket = this.basket.filter((productIN) => !checkDuplicate(productIN, productOUT));
     },
   },
 });

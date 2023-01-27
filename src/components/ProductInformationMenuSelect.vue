@@ -94,11 +94,6 @@ export default {
     } else if (this.items.length) {
       this.$emit("selected-item", this.items[0]);
     }
-    this.productsStore.basket.forEach((basket) => {
-      if (basket.id === this.productID) {
-        this.visible = false;
-      }
-    });
   },
 
   methods: {
@@ -121,15 +116,6 @@ export default {
         mdiChevronDown,
         mdiChevronUp,
       };
-    },
-  },
-
-  watch: {
-    "productsStore.basket.lenght": {
-      handler() {
-        this.visible = false;
-      },
-      deep: true,
     },
   },
 };

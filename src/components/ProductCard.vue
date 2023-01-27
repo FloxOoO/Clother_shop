@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="product-card-container"
     @click="$router.push(`/product/${product.id}`)"
   >
@@ -25,12 +25,30 @@
           <div class="product-card__brand">{{ product.brand }}</div>
           <div class="product-card__fullname">{{ product.fullname }}</div>
         </div>
+        <div v-if="$route.name === 'Корзина'" class="product-card__inbasket">
+          <div class="product-card__inbasket-information">
+            <div class="product-card__inbasket-color">
+              Выбранный цвет: {{ product.color }}
+            </div>
+            <div
+              v-if="product?.sizeSelected"
+              class="product-card__inbasket-size"
+            >
+              Выбранный размер: {{ product.sizeSelected }}
+            </div>
+          </div>
+          <div class="product-card__inbasket-amount">
+            Количество - {{ product.amount }} шт.
+          </div>
+        </div>
       </div>
     </div>
     <div class="product-card-hover">
-      <add-favorite 
+      <switch-favorite
+        v-if="$route.name !== 'Корзина'"
         :productID="product.id"
       />
+      <remove-basket v-if="$route.name === 'Корзина'" :product="product" />
       <div v-if="product?.size" class="product-card__size">
         Размер (RUS): {{ product.size.join(" ") }}
       </div>
@@ -38,17 +56,19 @@
   </div>
 </template>
 <script>
-import addFavorite from "./addFavorite.vue"
+import SwitchFavorite from "./SwitchFavorite.vue";
+import RemoveBasket from "./RemoveBasket.vue";
 export default {
   components: {
-    addFavorite
+    SwitchFavorite,
+    RemoveBasket,
   },
 
   props: {
     product: {
       type: Object,
       required: true,
-    }
+    },
   },
 };
 </script>
@@ -64,7 +84,7 @@ export default {
     &:hover {
       .product-card-hover {
         visibility: visible;
-        transition: .2s .2s;
+        transition: 0.2s 0.2s;
         box-shadow: 0px 7px 8px grey;
       }
     }
@@ -92,7 +112,7 @@ export default {
       object-fit: cover;
     }
   }
-  
+
   &__description {
     overflow: hidden;
     margin-bottom: 8px;
@@ -143,6 +163,29 @@ export default {
     padding: 8px;
     box-shadow: 0px 7px 8px grey;
     line-height: 19px;
+  }
+  &__inbasket {
+    &-information {
+      height: 57px;
+      margin-top: 8px;
+      font-weight: 700;
+      background-color: rgba(128, 128, 128, 0.4);
+      border-radius: 5px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
+    &-color {
+      margin-bottom: 5px;
+    }
+    &-amount {
+      font-size: 14px;
+      color: green;
+      font-weight: 700;
+    }
   }
 }
 </style>

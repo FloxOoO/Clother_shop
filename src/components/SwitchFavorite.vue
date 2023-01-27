@@ -47,7 +47,7 @@ export default {
   methods: {
     editFavorite() {
       this.favorite ? this.favorite = false : this.favorite = true
-      this.productsStore.addFavorite(this.productID)
+      this.productsStore.switchFavorite(this.productID)
     }
   },
 
