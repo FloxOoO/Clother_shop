@@ -28,7 +28,7 @@
         <div v-if="$route.name === 'Корзина'" class="product-card__inbasket">
           <div class="product-card__inbasket-information">
             <div class="product-card__inbasket-color">
-              Выбранный цвет: {{ product.color }}
+              {{ product?.color ? 'Выбранный цвет: '+product.color : 'Без опций'}}
             </div>
             <div
               v-if="product?.sizeSelected"

@@ -32,12 +32,13 @@
         <div
           v-for="(item, id) in items"
           :key="id"
+          @click="switchItem(item)"
           class="items-menu__dropdown-title"
         >
           <div v-if="photo" class="items-menu__photo">
             <img :src="`.${photo}`" alt="" />
           </div>
-          <a @click="switchItem(item)">
+          <a>
             {{ item }}
           </a>
         </div>
@@ -168,8 +169,13 @@ export default {
       align-items: center;
       background-color: white;
       padding: 8px 16px 8px 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        transition: 0.3s;
+        background-color: rgb(236, 236, 236);
+      }
       a {
-        cursor: pointer;
         transition: 0.3s;
         &:hover {
           transition: 0.3s;

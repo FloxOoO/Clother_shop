@@ -1,9 +1,11 @@
 <template>
   <div
-    @click="selected(title, '')"
     :class="`${select ? 'category-open' : 'category'}`"
   >
-    <div :class="`${select ? 'category-open__selected' : 'category__title'}`">
+    <div 
+      @click="selected(title, '')"
+      :class="`${select ? 'category-open__selected' : 'category__title'}`"
+    >
       <a> {{ title }} </a>
       <icon-mdi
         :icon="
@@ -157,7 +159,7 @@ export default {
 }
 .type {
   &:hover {
-    cursor: zoom-in;
+    cursor: auto;
   }
   a:hover {
     cursor: pointer;

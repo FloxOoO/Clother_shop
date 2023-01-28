@@ -3,7 +3,11 @@
     <div class="subheader__title">
       <slot> {{ namePage }} </slot>
     </div>
-    <img src="../img/logo_header.png" alt="" class="subheader__logo" />
+    <img
+      @click="$router.push('/')"
+      src="../img/logo_header.png" 
+      alt="" 
+      class="subheader__logo" />
     <div 
       @click="$router.push('/basket')"
       class="basket"

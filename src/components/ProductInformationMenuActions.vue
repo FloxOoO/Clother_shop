@@ -105,7 +105,7 @@ export default {
     &-active {
       transition: 0.3s;
       background-color: rgba(39, 39, 39, 0.8);
-      cursor: zoom-in;
+      cursor: auto;
     }
   }
 
