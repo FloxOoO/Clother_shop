@@ -25,22 +25,9 @@
           <div class="product-card__brand">{{ product.brand }}</div>
           <div class="product-card__fullname">{{ product.fullname }}</div>
         </div>
-        <div v-if="$route.name === 'Корзина'" class="product-card__inbasket">
-          <div class="product-card__inbasket-information">
-            <div class="product-card__inbasket-color">
-              {{ product?.color ? 'Выбранный цвет: '+product.color : 'Без опций'}}
-            </div>
-            <div
-              v-if="product?.sizeSelected"
-              class="product-card__inbasket-size"
-            >
-              Выбранный размер: {{ product.sizeSelected }}
-            </div>
-          </div>
-          <div class="product-card__inbasket-amount">
-            Количество - {{ product.amount }} шт.
-          </div>
-        </div>
+        <product-card-in-basket 
+          :product="product" 
+        />
       </div>
     </div>
     <div class="product-card-hover">
@@ -58,10 +45,12 @@
 <script>
 import SwitchFavorite from "./SwitchFavorite.vue";
 import RemoveBasket from "./RemoveBasket.vue";
+import ProductCardInBasket from "./ProductCardInBasket.vue";
 export default {
   components: {
     SwitchFavorite,
     RemoveBasket,
+    ProductCardInBasket,
   },
 
   props: {
@@ -163,29 +152,6 @@ export default {
     padding: 8px;
     box-shadow: 0px 7px 8px grey;
     line-height: 19px;
-  }
-  &__inbasket {
-    &-information {
-      height: 57px;
-      margin-top: 8px;
-      font-weight: 700;
-      background-color: rgba(128, 128, 128, 0.4);
-      border-radius: 5px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2px;
-    }
-    &-color {
-      margin-bottom: 5px;
-    }
-    &-amount {
-      font-size: 14px;
-      color: green;
-      font-weight: 700;
-    }
   }
 }
 </style>

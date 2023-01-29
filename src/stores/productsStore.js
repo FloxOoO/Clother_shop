@@ -1521,7 +1521,7 @@ export const useProductsStore = defineStore("productsStore", {
           (product) => product.category === category && product.type === type
         );
       };
-    },
+    }
   },
 
   actions: {
@@ -1547,5 +1547,10 @@ export const useProductsStore = defineStore("productsStore", {
     removeBasket(productOUT) {
       this.basket = this.basket.filter((productIN) => !checkDuplicate(productIN, productOUT));
     },
+    basketAmountAll() {
+      return this.basket.reduce((amountSum, product) => {
+        return amountSum += product.amount
+      }, 0)
+    }
   },
 });

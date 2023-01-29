@@ -12,6 +12,7 @@
       @click="$router.push('/basket')"
       class="basket"
     >
+      <icon-basket-amount />
       <icon-mdi :icon="icons.mdiBasketOutline" class="basket__icon" />
       <div class="basket__title">Корзина</div>
     </div>
@@ -27,9 +28,11 @@
 <script>
 import { mdiBasketOutline, mdiCardsHeart } from "@mdi/js";
 import IconMdi from "./IconMdi.vue";
+import IconBasketAmount from "./IconBasketAmount.vue"
 export default {
   components: {
     IconMdi,
+    IconBasketAmount
   },
 
   computed: {
@@ -85,6 +88,13 @@ export default {
 }
 .basket {
   @include subheader-menu(40%,black);
+  &:hover {
+    transition: .3s;
+    .amount {
+      transform: scale(1.37);
+      transition: .3s;
+    }
+  }
 }
 .favorite {
   @include subheader-menu(60%,red);
