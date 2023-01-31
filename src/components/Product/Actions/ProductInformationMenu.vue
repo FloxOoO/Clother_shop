@@ -33,8 +33,8 @@
   </div>
 </template>
 <script>
-import ProductInformationMenuActions from "./ProductInformationMenuActions.vue";
-import ProductInformationMenuSelect from "./ProductInformationMenuSelect.vue"
+import ProductInformationMenuActions from "../../Product/Actions/ProductInformationMenuActions.vue";
+import ProductInformationMenuSelect from "../../Product/Actions/ProductInformationMenuSelect.vue"
 export default {
   components: {
     ProductInformationMenuSelect,

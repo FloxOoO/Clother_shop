@@ -43,8 +43,8 @@
   </div>
 </template>
 <script>
-import SwitchFavorite from "./SwitchFavorite.vue";
-import RemoveBasket from "./RemoveBasket.vue";
+import SwitchFavorite from "../../Base/SwitchFavorite.vue";
+import RemoveBasket from "../../Base/RemoveBasket.vue";
 import ProductCardInBasket from "./ProductCardInBasket.vue";
 export default {
   components: {

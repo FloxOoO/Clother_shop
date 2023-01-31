@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { useProductsStore } from "../stores/productsStore.js";
+import { useProductsStore } from "../../stores/productsStore.js";
 export default {
   setup() {
     const productsStore = useProductsStore();

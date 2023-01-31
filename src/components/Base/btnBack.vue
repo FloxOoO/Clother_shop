@@ -8,7 +8,7 @@
 </template>
 <script>
 import { mdiReplyAllOutline } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
+import IconMdi from "../Icons/IconMdi.vue";
 export default {
   components: {
     IconMdi,

@@ -16,10 +16,10 @@
   </div>
 </template>
 <script>
-import PagePreloader from "./components/PagePreloader.vue";
-import MainHeader from "./components/MainHeader.vue";
-import SubHeader from "./components/SubHeader.vue";
-import MainFooter from "./components/MainFooter.vue";
+import PagePreloader from "./components/Main/PagePreloader.vue";
+import MainHeader from "./components/Main/Header/MainHeader.vue";
+import SubHeader from "./components/Main/Header/SubHeader.vue";
+import MainFooter from "./components/Main/MainFooter.vue";
 import MainPage from "./pages/MainPage.vue";
 export default {
   name: "Shop",

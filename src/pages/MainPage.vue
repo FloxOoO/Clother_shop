@@ -13,8 +13,8 @@
   </div>
 </template>
 <script>
-import MainMenu from "../components/MainMenu.vue";
-import CatalogProducts from "../components/CatalogProducts.vue";
+import MainMenu from "../components/Main/Menu/MainMenu.vue";
+import CatalogProducts from "../components/Base/CatalogProducts.vue";
 export default {
   name: "MainPage",
 

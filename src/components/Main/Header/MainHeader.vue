@@ -28,7 +28,7 @@
 </template>
 <script>
 import { mdiTruckDelivery, mdiWallet, mdiClock, mdiMenuDown } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
+import IconMdi from "../../Icons/IconMdi.vue";
 import MainHeaderPopup from "./MainHeaderPopup.vue";
 import MainHeaderPopupCity from "./MainHeaderPopupCity.vue";
 export default {

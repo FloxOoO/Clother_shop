@@ -6,7 +6,7 @@
 </template>
 <script>
 import { mdiCopyright } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
+import IconMdi from "../Icons/IconMdi.vue";
 export default {
   name: "Footer",
 

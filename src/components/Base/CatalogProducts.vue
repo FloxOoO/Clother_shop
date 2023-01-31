@@ -2,7 +2,8 @@
   <div 
     class="catalog-container"
     :class="{
-      'main': $route.name === 'Главная'
+      'main': $route.name === 'Главная',
+      'basket': $route.name === 'Корзина' && productsStore.basket.length
     }"
   >
     <div v-if="!pageOptions.length" class="catalog-container__empty">
@@ -20,8 +21,8 @@
   </div>
 </template>
 <script>
-import { useProductsStore } from "../stores/productsStore.js";
-import ProductCard from "./ProductCard.vue";
+import { useProductsStore } from "../../stores/productsStore.js";
+import ProductCard from "../Product/Card/ProductCard.vue";
 export default {
   components: {
     ProductCard,
@@ -82,5 +83,8 @@ export default {
 }
 .main {
   min-height: calc(100vh - 230px);
+}
+.basket {
+  min-height: calc(100vh - 339px);
 }
 </style>

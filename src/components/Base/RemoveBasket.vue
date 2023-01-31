@@ -5,8 +5,8 @@
 </template>
 <script>
 import { mdiCloseThick } from "@mdi/js";
-import { useProductsStore } from "../stores/productsStore.js";
-import IconMdi from "./IconMdi.vue";
+import { useProductsStore } from "../../stores/productsStore.js";
+import IconMdi from "../Icons/IconMdi.vue";
 export default {
   components: {
     IconMdi,
@@ -43,8 +43,9 @@ export default {
 .basket {
   position: relative;
   z-index: 3;
-  display: flex;
-  justify-content: end;
+  width: 24px;
+  left: 100%;
+  transform: translateX(calc(-100% - 8px));
   color: grey;
   transition: color 0.3s;
   margin: 8px 8px 0px 0px;

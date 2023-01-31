@@ -5,7 +5,7 @@
     </div>
     <img
       @click="$router.push('/')"
-      src="../img/logo_header.png" 
+      src="../../../assets/images/logo_header.png" 
       alt="" 
       class="subheader__logo" />
     <div 
@@ -27,8 +27,8 @@
 </template>
 <script>
 import { mdiBasketOutline, mdiCardsHeart } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
-import IconBasketAmount from "./IconBasketAmount.vue"
+import IconMdi from "../../Icons/IconMdi.vue";
+import IconBasketAmount from "../../Icons/IconBasketAmount.vue"
 export default {
   components: {
     IconMdi,
@@ -77,6 +77,7 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    cursor: pointer;
   }
   &__title {
     position: absolute;

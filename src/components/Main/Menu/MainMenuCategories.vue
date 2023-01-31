@@ -30,7 +30,7 @@
 </template>
 <script>
 import { mdiArrowDownCircleOutline, mdiArrowUpCircleOutline } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
+import IconMdi from "../../Icons/IconMdi.vue";
 export default {
   name: "MainMenuTitles",
 

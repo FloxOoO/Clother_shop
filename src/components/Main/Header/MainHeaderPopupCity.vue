@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen" class="backdrop" @click="close(null)">
     <div class="popup" @click.stop>
-      <img src="../img/logo_popup.png" alt="" class="popup__logo" />
+      <img src="../../../assets/images/logo_popup.png" alt="" class="popup__logo" />
       <div class="popup__description">
         <div class="popup__header">
           <div class="popup__title">Укажите ваш город</div>
@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import IconMdi from "./IconMdi.vue";
+import IconMdi from "../../Icons/IconMdi.vue";
 import { mdiClose } from "@mdi/js";
 export default {
   components: {

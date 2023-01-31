@@ -1,14 +1,33 @@
 <template>
   <btn-back> На главную </btn-back>
-  <catalog-products> Вы пока ничего не добавили в корзину </catalog-products>
+  <div class="basket-page">
+    <catalog-products> Вы пока ничего не добавили в корзину </catalog-products>
+    <basket-pay-popup ref="payPopup"/>
+    <btn-pay 
+      @open-window-pay="open"
+    />
+  </div>
 </template>
 <script>
-import btnBack from "../components/btnBack.vue";
-import CatalogProducts from "../components/CatalogProducts.vue";
+import btnBack from "../components/Base/btnBack.vue";
+import CatalogProducts from "../components/Base/CatalogProducts.vue";
+import BasketPayPopup from "../components/Product/BasketPayPopup.vue";
+import btnPay from "../components/Base/btnPay.vue"
 export default {
   components: {
     btnBack,
-    CatalogProducts
+    CatalogProducts,
+    BasketPayPopup,
+    btnPay
   },
+
+  methods: {
+    async open(flag) {
+      if (flag) {
+        await this.$refs.payPopup.open();
+      }
+    }
+  }
 };
 </script>
+

@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import btnBack from "../components/btnBack.vue";
+import btnBack from "../components/Base/btnBack.vue";
 import { useProductsStore } from "../stores/productsStore.js";
-import ProductInformationMenu from "../components/ProductInformationMenu.vue"
+import ProductInformationMenu from "../components/Product/Actions/ProductInformationMenu.vue"
 export default {
   components: {
     btnBack,

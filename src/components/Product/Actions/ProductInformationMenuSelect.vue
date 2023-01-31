@@ -10,7 +10,7 @@
       >
         <div class="items-menu__container">
           <div v-if="photo" class="items-menu__photo">
-            <img :src="`.${photo}`" alt="" />
+            <img :src="`../${photo}`" alt="" />
           </div>
           <div class="items-menu__title">
             {{ selectedItem }}
@@ -36,7 +36,7 @@
           class="items-menu__dropdown-title"
         >
           <div v-if="photo" class="items-menu__photo">
-            <img :src="`.${photo}`" alt="" />
+            <img :src="`../${photo}`" alt="" />
           </div>
           <a>
             {{ item }}
@@ -48,8 +48,8 @@
 </template>
 <script>
 import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
-import IconMdi from "./IconMdi.vue";
-import { useProductsStore } from "../stores/productsStore.js";
+import IconMdi from "../../Icons/IconMdi.vue";
+import { useProductsStore } from "../../../stores/productsStore.js";
 export default {
   components: {
     IconMdi,

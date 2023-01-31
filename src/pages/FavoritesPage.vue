@@ -3,8 +3,8 @@
   <catalog-products> Вы пока ничего не добавили в избранное </catalog-products>
 </template>
 <script>
-import btnBack from "../components/btnBack.vue";
-import CatalogProducts from "../components/CatalogProducts.vue";
+import btnBack from "../components/Base/btnBack.vue";
+import CatalogProducts from "../components/Base/CatalogProducts.vue";
 export default {
   components: {
     btnBack,

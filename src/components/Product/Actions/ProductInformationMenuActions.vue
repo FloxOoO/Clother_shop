@@ -18,8 +18,8 @@
   </div>
 </template>
 <script>
-import SwitchFavorite from "../components/SwitchFavorite.vue";
-import { useProductsStore } from "../stores/productsStore.js";
+import SwitchFavorite from "../../Base/SwitchFavorite.vue";
+import { useProductsStore } from "../../../stores/productsStore.js";
 export default {
   components: {
     SwitchFavorite,

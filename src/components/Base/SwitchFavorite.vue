@@ -11,8 +11,8 @@
 </template>
 <script>
 import { mdiCardsHeartOutline, mdiCardsHeart } from "@mdi/js";
-import { useProductsStore } from "../stores/productsStore.js";
-import IconMdi from "./IconMdi.vue";
+import { useProductsStore } from "../../stores/productsStore.js";
+import IconMdi from "../Icons/IconMdi.vue";
 export default {
   components: {
     IconMdi

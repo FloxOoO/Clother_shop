@@ -18,7 +18,7 @@
 </template>
 <script>
 import MainMenuCategories from "./MainMenuCategories.vue";
-import { useProductsStore } from "../stores/productsStore.js";
+import { useProductsStore } from "../../../stores/productsStore.js";
 export default {
   name: "MainMenu",
 
