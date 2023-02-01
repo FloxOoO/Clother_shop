@@ -18,7 +18,8 @@
     <product-information-menu-select 
       :photo="product.image_path"
       :items="product.colors"
-      :productID="product.id"
+      :productID="
+product.id"
       @selected-item="userSelectedColor"
     />
     <product-information-menu-select 

@@ -1,9 +1,9 @@
 <template>
-  <div 
+  <div
     class="catalog-container"
     :class="{
-      'main': $route.name === 'Главная',
-      'basket': $route.name === 'Корзина' && productsStore.basket.length
+      main: $route.name === 'Главная',
+      basket: $route.name === 'Корзина' && productsStore.basket.length,
     }"
   >
     <div v-if="!pageOptions.length" class="catalog-container__empty">
@@ -27,7 +27,7 @@ export default {
   components: {
     ProductCard,
   },
-  
+
   props: {
     selectedCategory: {
       type: Object,
@@ -44,6 +44,8 @@ export default {
     if (this.$route.name === "Главная") {
       this.getProducts('', '')
     }
+    this.productsStore.addFromLS("basket-products")
+    // this.productsStore.addFromLS("favorite-products") не работает
   },
 
   computed: {
