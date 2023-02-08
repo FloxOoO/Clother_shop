@@ -6,9 +6,9 @@ import ProductPage from './pages/ProductPage.vue'
 
 
 const routes = [
-  { path: '/', component: MainPage, name: "Главная" },
-  { path: '/favorites', component: FavoritesPage, name: "Избранное" },
-  { path: '/basket', component: BasketPage, name: "Корзина" },
+  { path: '/:pageId', component: MainPage, name: "Главная" },
+  { path: '/favorites/:pageId', component: FavoritesPage, name: "Избранное" },
+  { path: '/basket/:pageId', component: BasketPage, name: "Корзина" },
   { path: '/product/:id', component: ProductPage, name: "О товаре" }
 ];
 

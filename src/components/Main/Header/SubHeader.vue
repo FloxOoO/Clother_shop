@@ -4,12 +4,12 @@
       <slot> {{ namePage }} </slot>
     </div>
     <img
-      @click="$router.push('/')"
+      @click="$router.push('/1')"
       src="../../../assets/images/logo_header.png" 
       alt="" 
       class="subheader__logo" />
     <div 
-      @click="$router.push('/basket')"
+      @click="$router.push('/basket/1')"
       class="basket"
     >
       <icon-basket-amount />
@@ -17,7 +17,7 @@
       <div class="basket__title">Корзина</div>
     </div>
     <div 
-      @click="$router.push('/favorites')"
+      @click="$router.push('/favorites/1')"
       class="favorite"
     >
       <icon-mdi :icon="icons.mdiCardsHeart" class="favorite__icon" />

@@ -1,6 +1,6 @@
 <template>
   <div class="btn-back-container">
-    <div to="/" class="btn-back" @click="$router.push('/')">
+    <div to="/" class="btn-back" @click="$router.push('/1')">
       <icon-mdi :icon="icons.mdiReplyAllOutline" class="btn-back__icon" />
       <a><slot> {{ nameBackPage }} </slot></a>
     </div>

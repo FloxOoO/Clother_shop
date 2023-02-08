@@ -14,7 +14,7 @@
 </template>
 <script>
 import MainMenu from "../components/Main/Menu/MainMenu.vue";
-import CatalogProducts from "../components/Base/CatalogProducts.vue";
+import CatalogProducts from "../components/Base/Catalog/CatalogProducts.vue";
 export default {
   name: "MainPage",
 

@@ -4,7 +4,7 @@
 </template>
 <script>
 import btnBack from "../components/Base/btnBack.vue";
-import CatalogProducts from "../components/Base/CatalogProducts.vue";
+import CatalogProducts from "../components/Base/Catalog/CatalogProducts.vue";
 export default {
   components: {
     btnBack,

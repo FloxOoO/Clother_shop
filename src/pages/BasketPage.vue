@@ -10,7 +10,7 @@
 </template>
 <script>
 import btnBack from "../components/Base/btnBack.vue";
-import CatalogProducts from "../components/Base/CatalogProducts.vue";
+import CatalogProducts from "../components/Base/Catalog/CatalogProducts.vue";
 import BasketPayPopup from "../components/Product/BasketPayPopup.vue";
 import btnPay from "../components/Base/btnPay.vue"
 export default {
