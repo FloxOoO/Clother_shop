@@ -21,8 +21,18 @@ import MainHeader from "./components/Main/Header/MainHeader.vue";
 import SubHeader from "./components/Main/Header/SubHeader.vue";
 import MainFooter from "./components/Main/MainFooter.vue";
 import MainPage from "./pages/MainPage.vue";
+import { useProductsStore } from "./stores/productsStore.js";
 export default {
   name: "Shop",
+  
+  beforeCreate() {
+    this.productsStore.initProducts();
+  },
+
+  setup() {
+    const productsStore = useProductsStore();
+    return { productsStore };
+  },
 
   components: {
     PagePreloader,

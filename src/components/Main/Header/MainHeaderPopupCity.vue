@@ -5,7 +5,7 @@
       <div class="popup__description">
         <div class="popup__header">
           <div class="popup__title">Укажите ваш город</div>
-          <icon-mdi :icon="icons.mdiClose" @click="close" class="popup__icon" />
+          <icon-mdi :icon="icons.mdiClose" @click="close(null)" class="popup__icon" />
         </div>
         <div class="popup__city-list">
           <a 
@@ -56,7 +56,9 @@ export default {
       this.isOpen = true;
     },
     close(city) {
-      this.$emit('select-city', city)
+      if (city) {
+        this.$emit('select-city', city)
+      }
       this.isOpen = false;
     }
   },

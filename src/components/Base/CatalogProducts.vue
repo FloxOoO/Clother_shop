@@ -45,7 +45,7 @@ export default {
       this.getProducts('', '')
     }
     this.productsStore.addFromLS("basket-products")
-    // this.productsStore.addFromLS("favorite-products") не работает
+    this.productsStore.addFromLS("favorite-products")
   },
 
   computed: {

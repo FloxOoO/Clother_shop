@@ -1,7 +1,9 @@
 <template>
   <btn-back> На главную </btn-back>
   <div class="open-product">
-    <div class="open-product__right-column"></div>
+    <div class="open-product__right-column">
+      <product-information :product="product" />
+    </div>
     <div class="open-product__left-column">
       <product-information-menu :product="product" />
     </div>
@@ -10,10 +12,12 @@
 <script>
 import btnBack from "../components/Base/btnBack.vue";
 import { useProductsStore } from "../stores/productsStore.js";
+import ProductInformation from "../components/Product/ProductInformation.vue"
 import ProductInformationMenu from "../components/Product/Actions/ProductInformationMenu.vue"
 export default {
   components: {
     btnBack,
+    ProductInformation,
     ProductInformationMenu
   },
 
@@ -36,11 +40,11 @@ export default {
   display: flex;
   min-height: calc(100vh - 274px);
   &__right-column {
-    width: 900px;
+    flex: 1 1 auto;
   }
 
   &__left-column {
-    flex: 1 1 auto;
+    min-width: 300px;
   }
 }
 </style>

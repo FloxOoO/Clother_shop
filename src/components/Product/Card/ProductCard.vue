@@ -5,7 +5,7 @@
   >
     <div class="product-card">
       <div class="product-card__image">
-        <img :src="`${product.image_path}`" class="product-card__img" />
+        <img :src="product.image_path" class="product-card__img" />
       </div>
       <div class="product-card__description">
         <div class="product-card__price">
