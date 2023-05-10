@@ -1,5 +1,5 @@
 <template>
-  <div class="page" v-if="productsStore.products.length">
+  <div class="page">
     <page-preloader />
     <div class="page__container">
       <main-header />
